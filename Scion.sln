@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scion.main", "ClassLibrary1\Scion.main.csproj", "{3DA37357-092D-45BE-A8F5-75337004FCCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84FF0E28-16F2-417B-8162-49350A82F08D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DA37357-092D-45BE-A8F5-75337004FCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA37357-092D-45BE-A8F5-75337004FCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA37357-092D-45BE-A8F5-75337004FCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA37357-092D-45BE-A8F5-75337004FCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
