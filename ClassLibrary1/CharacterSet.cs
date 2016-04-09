@@ -71,5 +71,9 @@ namespace Scion.Main
 
         }
 
+        internal void AddCharacter(CharData c)
+        {
+            ActiveChars.Add(c);
+        }
     }
 }
