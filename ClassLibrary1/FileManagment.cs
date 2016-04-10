@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Scion.Main
 {
-    class FileManagment
+    public class FileManagment
     {
         /// <summary>
         /// Load Monster File from any compatible version. NOTE Many Possible errors thrown;
@@ -27,7 +27,7 @@ namespace Scion.Main
                     var check = line1Attribs[0].Split(':');
 
                     //Check structure = Version
-                    if (check[0] != "Version"||line1Attribs[1]!="Monsters") { Exception InvalidFileException = null; throw InvalidFileException; }
+                    if (check[0] != "Version" || line1Attribs[1] != "Monsters") { Exception InvalidFileException = null; throw InvalidFileException; }
                     //Check Version Number <= Current Version 
                     //TODO implement file check for version no
                     if (Convert.ToDecimal(check[1]) > 1) { Exception InvalidVersionException = null; throw InvalidVersionException; }
@@ -38,7 +38,8 @@ namespace Scion.Main
 
 
                     ///TODO Finalise neatly
-                    throw new NotImplementedException();
+                    ///try oldest version
+                    return MonsterloaderV1(rdr, check);
                 }
             }
 
@@ -103,7 +104,7 @@ namespace Scion.Main
 
 
                     ///TODO Finalise neatly
-                    throw new NotImplementedException();
+                    return CharactersloaderV1(rdr, check);
                 }
             }
 
@@ -124,6 +125,11 @@ namespace Scion.Main
             return cs;
         }
 
+        /// <summary>
+        /// Save Character Files, extracted from current character set, 
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <param name="cs"></param>
         public void CharacterSaver(string filepath, CharacterSet cs)
         {
             using (FileStream fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite))

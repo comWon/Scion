@@ -1,0 +1,134 @@
+﻿using System;
+/// <summary>
+/// Data store for active characters and Mobs, 
+/// </summary>
+
+namespace Scion.MainHard
+{
+    /// <summary>
+    /// Object to hold char base data
+    /// </summary>
+    public class CharData
+    {
+        /// <summary>
+        /// Variables named by function in SCION by White Wolf
+        /// </summary>
+        public string ToonName { get; set; }
+        public string PlayerName { get; set; }
+        public int joinBattle { get; set; }
+        private int _currentStep;
+        private int currentStep {
+            get { return _currentStep; }
+            set { if (this._currentStep == 0) { this._currentStep = this.speed; this.speed = 0; } else { this._currentStep = this._currentStep - 1; } }
+        }
+        public int epicDex { get; set; }
+        public int speed { get; set; }
+        public bool Monster { get; set; }
+        public int Successes;
+
+
+        private Monster MonsterType;
+         
+        private bool Ready { get; set; }
+        public bool Rdy { get { return Ready; } }
+
+        public CharData()
+        {
+            ToonName = "Nonny mouse the Monster";
+            PlayerName = "NPC";
+            this.speed = 6;
+            this.currentStep = 0;
+            Monster = true;
+            Ready = false;
+            MonsterType = new Monster();
+            Successes = -1;
+        }
+
+        public CharData(string Player, int joinBattleIn, int epicDexIn) :this()
+        { 
+            Monster = false;
+            PlayerName = Player;
+            Ready = false;
+            epicDex = epicDexIn;
+            joinBattle = joinBattleIn;
+
+        } 
+
+        public CharData(string Player, string _name , int joinBattleIn, int epicDexIn) : this(Player, joinBattleIn, epicDexIn)
+        {
+            ToonName = _name;
+        }
+
+        public CharData(Monster m, string refrence):this()
+        {
+            ToonName = refrence;
+            epicDex = m.EpicDex;
+            joinBattle = m.Joinbattle;
+        }
+ 
+        public string ReturnJoinBattle()
+        {
+            string temp;
+            temp = joinBattle.ToString();
+            if (epicDex > 0)
+            {
+                temp = temp + "  +" + epicDex.ToString();
+            }
+            return temp;
+        }
+
+        public void MonsterInit()
+        {
+            if (Monster == false) { Exception NotAMonster=null; throw NotAMonster;  }
+            Successes = MonsterType.rollit();
+            Ready = true;
+        }
+
+        public void RollInitiative(int SuccessesIn) {
+            Successes = SuccessesIn;
+            Ready = true;
+        }
+
+        /// <summary>
+        /// Enter Combat
+        /// </summary>
+        /// <param name="HighestSucceses"> the highest no of successes rolled</param>
+        public void trigger (int HighestSucceses)
+        {
+            if (Ready == true) { Exception AlreadyTriggered = null; throw AlreadyTriggered; }
+            if (HighestSucceses<Successes) { Exception InvalidStartException = null; throw InvalidStartException; }
+
+            speed = HighestSucceses - Successes;
+            if (speed > 6)
+            { speed = 6; }
+
+            currentStep = 0;
+            Ready = true;
+        }
+
+        /// <summary>
+        /// Remove Combat Status
+        /// </summary>
+        public void EndCombat()
+        {
+            if (Ready == false) { Exception NotInCombat = null; throw NotInCombat; }
+            Successes = -1;
+            speed = 0;
+            while (currentStep >0) {
+                currentStep = 0;
+            }
+            Ready = false;
+
+            }
+        public int ReturnPosition ()
+        {
+            return currentStep;
+        }
+
+        public void NextAction ()
+        {
+            currentStep = 0;
+        }
+
+    }
+}

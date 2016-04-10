@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Scion.Main
 {
-    class CharacterSet
+    public class CharacterSet
     {
         List<CharData> ActiveChars;
 
