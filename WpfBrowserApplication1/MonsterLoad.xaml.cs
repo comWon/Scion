@@ -19,11 +19,11 @@ namespace Scion.Wpf
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class MonsterIn : Page
     {
         public List<Monster> MonsterList { get; set; }
 
-        public Page1()
+        public MonsterIn()
         {
             InitializeComponent();
         }
@@ -31,6 +31,7 @@ namespace Scion.Wpf
         private void FileLocationBox_Loaded(object sender, RoutedEventArgs e)
         {
              FileLocationBox.Text ="C:\\Monsters.Txt";
+
         }
 
         private void SaveMonsters_Click(object sender, RoutedEventArgs e)
@@ -53,5 +54,9 @@ namespace Scion.Wpf
             grid.ItemsSource = MonsterList;
         }
 
+        private void dataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Scion.MainHard
         public IEnumerable<CharData> ActiveCharacters ()
         {
             return ActiveChars.Where(x => x.ReturnPosition() == 0);
+        }
+
+        public IEnumerable Listing()
+        {
+            return ActiveChars;
         }
 
         /// <summary>
@@ -71,7 +77,7 @@ namespace Scion.MainHard
 
         }
 
-        internal void AddCharacter(CharData c)
+        public void AddCharacter(CharData c)
         {
             ActiveChars.Add(c);
         }
