@@ -35,7 +35,22 @@ namespace Scion.Wpf
 
         private void SaveMonsters_Click(object sender, RoutedEventArgs e)
         {
+            FileManagment.MonsterSaver(FileLocationBox.Text, MonsterList);
+        }
 
+        private void LoadMonsters_Click(object sender, RoutedEventArgs e)
+        {
+            MonsterList = Structural.TestMobs();
+            //MonsterList = FileManagment.MonsterLoader(FileLocationBox.Text);
+        }
+
+        private void dataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Load testMobs
+             MonsterList = Structural.TestMobs();
+
+            var grid = sender as DataGrid;
+            grid.ItemsSource = MonsterList;
         }
 
     }

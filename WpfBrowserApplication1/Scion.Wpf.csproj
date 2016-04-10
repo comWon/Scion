@@ -60,7 +60,10 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="Page1.xaml">
+    <Compile Include="ScionLoader.xaml.cs">
+      <DependentUpon>ScionLoader.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MonsterLoad.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -68,10 +71,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
+    <Compile Include="MonsterLoad.xaml.cs">
+      <DependentUpon>MonsterLoad.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ScionLoader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -98,6 +105,12 @@
     <None Include="Properties\app.manifest" />
     <AppDesigner Include="Properties\" />
     <None Include="WpfBrowserApplication1_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary2\Scion.MainHard.csproj">
+      <Project>{a713b56c-54f9-465f-bc7a-0ae5a521dc36}</Project>
+      <Name>Scion.MainHard</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <StartArguments />

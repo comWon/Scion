@@ -8,14 +8,14 @@ using System.IO;
 
 namespace Scion.MainHard
 {
-    public class FileManagment
+    public static class FileManagment
     {
         /// <summary>
         /// Load Monster File from any compatible version. NOTE Many Possible errors thrown;
         /// </summary>
         /// <param name="filepath"></param>
         /// <returns>Standard Monster Set Format</returns>
-        public List<Monster> MonsterLoader(string filepath)
+        public static List<Monster> MonsterLoader(string filepath)
         {
             using (FileStream fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
             {
@@ -46,7 +46,7 @@ namespace Scion.MainHard
 
         }
 
-        private List<Monster> MonsterloaderV1(StreamReader rdr, string[] check)
+        private static List<Monster> MonsterloaderV1(StreamReader rdr, string[] check)
         {
             List<Monster> output = new List<Monster>();
             while (rdr.EndOfStream == false)
@@ -65,7 +65,7 @@ namespace Scion.MainHard
         /// </summary>
         /// <param name="filepath"></param>
         /// <param name="Monsters"></param>
-        public void MonsterSaver(string filepath, List<Monster> Monsters)
+        public static void MonsterSaver(string filepath, List<Monster> Monsters)
         {
             using (FileStream fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
@@ -81,7 +81,7 @@ namespace Scion.MainHard
         }
 
 
-        public CharacterSet LoadCharacters (string filepath)
+        public static CharacterSet LoadCharacters (string filepath)
         {
             using (FileStream fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
             {
@@ -110,7 +110,7 @@ namespace Scion.MainHard
 
         }
 
-        private CharacterSet CharactersloaderV1(StreamReader rdr, string[] check)
+        private static CharacterSet CharactersloaderV1(StreamReader rdr, string[] check)
         {
             CharacterSet cs = new CharacterSet();
             while (rdr.EndOfStream == false)
@@ -130,7 +130,7 @@ namespace Scion.MainHard
         /// </summary>
         /// <param name="filepath"></param>
         /// <param name="cs"></param>
-        public void CharacterSaver(string filepath, CharacterSet cs)
+        public static void CharacterSaver(string filepath, CharacterSet cs)
         {
             using (FileStream fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
