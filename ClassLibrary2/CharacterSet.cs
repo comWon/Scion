@@ -39,6 +39,19 @@ namespace Scion.MainHard
             return ActiveChars;
         }
 
+        public CharData Next()
+        {
+            CharData Returns = ActiveChars.FirstOrDefault(x => x.ReturnPosition() == 0);
+
+            if (Returns==null)
+            {
+                this.nextRound();
+                return Next();
+            } else
+            {
+                return Returns;
+            }
+        }
         /// <summary>
         /// Check All actions have occured, then starts the next round of combat
         /// </summary>

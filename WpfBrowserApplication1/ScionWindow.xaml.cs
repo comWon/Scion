@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Scion.MainHard;
 
 namespace Scion.Wpf
 {
@@ -24,18 +25,28 @@ namespace Scion.Wpf
             InitializeComponent();
         }
 
+        SolidColorBrush Monster = new SolidColorBrush
+        {
+            Color = Color.FromRgb(150, 0, 0)
+        };
+        SolidColorBrush Scion = new SolidColorBrush
+        {
+            Color = Color.FromRgb(0, 150, 0)
+        };
+
         private void MonsterButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("MonsterLoad.xaml");
+            masterFrame.Source = new System.Uri("/ScionInit;component/MonsterLoad.xaml");
         }
 
         private void ScionButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("ScionLoader.xaml");
+            masterFrame.Source = new System.Uri("/ScionInit;component/ScionLoader.xaml");
         }
 
-        private void frame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void Game_Click(object sender, RoutedEventArgs e)
         {
+            masterFrame.Source = new Uri("/ScoinInit;component/Combat.xaml");
 
         }
     }

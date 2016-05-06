@@ -25,7 +25,6 @@ namespace Scion.Wpf
 
         public ScionLoader()
         {
-            InitializeComponent();
             CharData C = new CharData("test", "test", 7, 0);
             CS.AddCharacter(C);
         }
