@@ -15,6 +15,8 @@ namespace Scion.MainHard
         {
             foreach (CharData C in ActiveChars)
             {
+                nullChack();
+
                 if (C.Rdy == false) { Exception NotYetReady = null; throw NotYetReady; }
                 if (C.Monster == true && C.Successes == -1 ) { C.MonsterInit(); }
                 
@@ -29,18 +31,34 @@ namespace Scion.MainHard
 
         }
 
+        private void nullChack()
+        {
+            if (ActiveChars == null)
+            {
+                ActiveChars = new List<CharData>();
+            }
+        }
+
         public IEnumerable<CharData> ActiveCharacters ()
         {
+            nullChack();
+
             return ActiveChars.Where(x => x.ReturnPosition() == 0);
         }
 
         public IEnumerable Listing()
         {
+
+            nullChack();
+
             return ActiveChars;
         }
 
         public CharData Next()
         {
+
+            nullChack();
+
             CharData Returns = ActiveChars.FirstOrDefault(x => x.ReturnPosition() == 0);
 
             if (Returns==null)
@@ -80,6 +98,9 @@ namespace Scion.MainHard
         /// <param name="Number"> Count of Monsters to add</param>
         public void AddMonsters (Monster M, int Number)
         {
+
+            nullChack();
+
             if (M.Joinbattle ==0) { Exception MonsterNotSet=null;  throw MonsterNotSet; }
             for (int i = 0; i < Number; i++)
             {
@@ -92,6 +113,9 @@ namespace Scion.MainHard
 
         public void AddCharacter(CharData c)
         {
+
+            nullChack();
+
             ActiveChars.Add(c);
         }
     }

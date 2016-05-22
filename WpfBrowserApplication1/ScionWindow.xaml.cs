@@ -23,6 +23,10 @@ namespace Scion.Wpf
         public ScionWindow()
         {
             InitializeComponent();
+            sets = new CharacterSet();
+
+            // TEST CODE 
+            sets = Structural.TestCharSet();
         }
 
         SolidColorBrush Monster = new SolidColorBrush
@@ -34,19 +38,22 @@ namespace Scion.Wpf
             Color = Color.FromRgb(0, 150, 0)
         };
 
+        CharacterSet sets { get; set; }
+
         private void MonsterButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("/ScionInit;component/MonsterLoad.xaml");
         }
 
         private void ScionButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("/ScionInit;component/ScionLoader.xaml");
         }
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new Uri("/ScoinInit;component/Combat.xaml");
+            Combat window = new Combat(sets);
+            masterFrame.Content = window
+                ;
+
 
         }
     }

@@ -30,7 +30,7 @@ namespace Scion.Wpf
 
         private void FileLocationBox_Loaded(object sender, RoutedEventArgs e)
         {
-             FileLocationBox.Text ="C:\\Monsters.Txt";
+             FileLocationBox.Text ="Monsters.Txt";
 
         }
 

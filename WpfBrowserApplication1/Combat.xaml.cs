@@ -18,6 +18,28 @@ namespace Scion.Wpf
 {
     class Combat
     {
+        private Combat()
+        {
 
+        }
+
+        public Combat(CharacterSet CS)
+        {
+            Chars = CS;
+
+            foreach ( CharData c in CS.ActiveCharacters())
+            {
+                WpfToken token = new WpfToken(c);
+                Canvas.SetTop(token.Token, token.CurrentX);
+                Canvas.SetLeft(token.Token, token.CurrentY);
+                tokens.Add(token);
+
+
+            }
+        }
+
+        CharacterSet Chars { get; set; }
+
+        List<WpfToken> tokens { get; set; }
     }
 }

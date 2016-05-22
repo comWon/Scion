@@ -7,7 +7,7 @@ namespace Scion.MainHard
     {
     public class Structural
     {
-        public CharacterSet activeCharacters = new CharacterSet();
+        public CharacterSet activeCharacters { get; set; }
         public List<Monster> MonsterSet = new List<Monster>();
 
         public static List<Monster> TestMobs()
@@ -23,6 +23,20 @@ namespace Scion.MainHard
             testMobs.Add(o);
 
             return testMobs;
+        }
+
+        public static CharacterSet TestCharSet ()
+        {
+            CharacterSet ac = new CharacterSet();
+
+            foreach (var m in TestMobs())
+            {
+                ac.AddMonsters(m, 1);
+            }
+            CharData c = new CharData("Name","_Name",6,6);
+            ac.AddCharacter(c);
+
+            return ac;
         }
     }
 }
