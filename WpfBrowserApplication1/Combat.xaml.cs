@@ -16,18 +16,19 @@ using Scion.MainHard;
 
 namespace Scion.Wpf
 {
-    class Combat
+    class Combat :Canvas
     {
-        private Combat()
+        public Combat()
         {
-
+            Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
         }
 
-        public Combat(CharacterSet CS)
+        public Combat(CharacterSet CS):this()
         {
             Chars = CS;
+            tokens = new List<WpfToken>();
 
-            foreach ( CharData c in CS.ActiveCharacters())
+            foreach ( CharData c in CS.Listing())
             {
                 WpfToken token = new WpfToken(c);
                 Canvas.SetTop(token.Token, token.CurrentX);

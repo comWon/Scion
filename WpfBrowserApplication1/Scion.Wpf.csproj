@@ -153,13 +153,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Scion_Battlewheel_by_Tiggerherz.jpg" />
+    <Resource Include="Images\Scion_Battlewheel_by_Tiggerherz.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\FireDude.png" />
+    <Resource Include="Images\FireDude.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Blank.png" />
+    <Resource Include="Images\Blank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <PropertyGroup>
     <StartArguments />

@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scion.Wpf"
         mc:Ignorable="d"
-        Title="ScionWindow" Height="327.907" Width="426.453">
-    <Grid Margin="0,0,-8,-31">
-        <GridSplitter x:Name="gridSplitter" HorizontalAlignment="Left" Height="325" Margin="95,-28,0,0" VerticalAlignment="Top" Width="0"/>
-        <Frame x:Name="masterFrame" Content="Frame" HorizontalAlignment="Left" Height="300" Margin="95,0,0,0" VerticalAlignment="Top" Width="300" />
-        <Button x:Name="MonsterButton" Content="Monsters" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top" Width="75" Click="MonsterButton_Click"/>
-        <Button x:Name="ScionButton" Content="Scions" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Width="75" Click="ScionButton_Click"/>
-        <Button x:Name="Game" Content="Run Combat" HorizontalAlignment="Left" Margin="0,67,0,0" VerticalAlignment="Top" Width="75" Click="Game_Click"/>
+        Title="ScionWindow" Height="350" Width="475">
+    <Grid x:Name="Object" Margin="0,0,-8,-31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Name="Button" Width="75" />
+            <ColumnDefinition Name="Interface" Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="MonsterButton" Grid.Column="0" Content="Monsters" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top" Width="75" Click="MonsterButton_Click"/>
+        <Button x:Name="ScionButton" Grid.Column="0" Content="Scions" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Width="75" Click="ScionButton_Click"/>
+        <Button x:Name="Game" Grid.Column="0" Content="Run Combat" HorizontalAlignment="Left" Margin="0,67,0,0" VerticalAlignment="Top" Width="75" Click="Game_Click"/>
 
     </Grid>
 </Window>
