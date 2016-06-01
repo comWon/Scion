@@ -18,7 +18,7 @@
     <HostInBrowser>true</HostInBrowser>
     <TargetZone>Internet</TargetZone>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>True</SignManifests>
+    <SignManifests>false</SignManifests>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -167,13 +167,19 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Scion_Battlewheel_by_Tiggerherz.jpg" />
+    <Resource Include="Images\Scion_Battlewheel_by_Tiggerherz.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\FireDude.png" />
+    <Resource Include="Images\FireDude.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Blank.png" />
+    <Resource Include="Images\Blank.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <PropertyGroup>
     <StartArguments />
@@ -185,11 +191,10 @@
     <ManifestCertificateThumbprint>14B31A19F3C55EF0F1E43DB2E8A2ABCDFC702FD0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>Scion.Wpf.ScionInit</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

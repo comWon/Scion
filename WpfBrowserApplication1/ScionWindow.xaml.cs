@@ -20,14 +20,37 @@ namespace Scion.Wpf
     /// </summary>
     public partial class ScionWindow : Window
     {
-        public ScionLoader sL { get; set; }
-        public MonsterIn ML { get; set; }
-        public CharacterSet characterSet { get; set; }
-
         public ScionWindow()
         {
             InitializeComponent();
+            sets = new CharacterSet();
+
+            // TEST CODE 
+            sets = Structural.TestCharSet();
+
+            Combat r = new Combat(sets);
+           // Rectangle r = new Rectangle();
+
+            r.Height = 300;
+            r.Width = 300;
+            //r.Fill = new SolidColorBrush() { Color = Colors.Red };
+
+            Object.Children.Add(r);
+            Grid.SetColumn(r, 1);
+
+            //CombatWindow = new Combat(sets);
+            //CombatWindow.Height = 300;
+            //CombatWindow.Width = 300;
+
+            //Object.Children.Add(CombatWindow);
+            //Grid.SetColumn(CombatWindow, 1);
+            //CombatWindow.Visibility = Visibility.Visible;
+
+            int x = 1;
+
         }
+
+        Combat CombatWindow { get; set; }
 
         SolidColorBrush Monster = new SolidColorBrush
         {
@@ -38,22 +61,28 @@ namespace Scion.Wpf
             Color = Color.FromRgb(0, 150, 0)
         };
 
+        CharacterSet sets { get; set; }
+
         private void MonsterButton_Click(object sender, RoutedEventArgs e)
         {
-            ML = new MonsterIn();
-            masterFrame.Content = ML;
         }
 
         private void ScionButton_Click(object sender, RoutedEventArgs e)
         {
-             sL = new ScionLoader();
-            masterFrame.Content = sL;
         }
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
+            CombatWindow = new Combat(sets);
+            
+            Object.Children.Add(CombatWindow);
+            Grid.SetColumn(CombatWindow, 1);
 
-            CombatWindow combatWindow = new CombatWindow(characterSet);
+        }
+
+        private void masterFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
         }
     }
 }

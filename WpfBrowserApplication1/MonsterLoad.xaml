@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MonsterIn">
     <Grid>
-        <TextBox x:Name="FileLocationBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="C:\Monsters.txt" VerticalAlignment="Top" Width="120" Loaded="FileLocationBox_Loaded"/>
+        <TextBox x:Name="FileLocationBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="Monsters.txt" VerticalAlignment="Top" Width="120" Loaded="FileLocationBox_Loaded"/>
         <Button x:Name="SaveMonsters" Content="Save Monsters" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Width="75" Click="SaveMonsters_Click"/>
         <Button x:Name="LoadMonsters" Content="Load Monsters" HorizontalAlignment="Left" Margin="146,35,0,0" VerticalAlignment="Top" Width="75" Click="LoadMonsters_Click"/>
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Height="230" Width="280" Loaded="dataGrid_Loaded" AlternatingRowBackground="LightBlue" AddingNewItem="dataGrid_AddingNewItem"/>
