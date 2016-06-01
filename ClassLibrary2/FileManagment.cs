@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.IO.IsolatedStorage;
 
 
 namespace Scion.MainHard
@@ -17,7 +18,9 @@ namespace Scion.MainHard
         /// <returns>Standard Monster Set Format</returns>
         public static List<Monster> MonsterLoader(string filepath)
         {
-            using (FileStream fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(filepath, FileMode.Open, FileAccess.Read, isoStore))
             {
                 using (StreamReader rdr = new StreamReader(fileStream))
                 {
@@ -48,6 +51,7 @@ namespace Scion.MainHard
 
         private static List<Monster> MonsterloaderV1(StreamReader rdr, string[] check)
         {
+
             List<Monster> output = new List<Monster>();
             while (rdr.EndOfStream == false)
             {
@@ -67,7 +71,9 @@ namespace Scion.MainHard
         /// <param name="Monsters"></param>
         public static void MonsterSaver(string filepath, List<Monster> Monsters)
         {
-            using (FileStream fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite, isoStore))
             {
                 using (StreamWriter Wtr = new StreamWriter(fileStream))
                 {
@@ -83,7 +89,9 @@ namespace Scion.MainHard
 
         public static CharacterSet LoadCharacters (string filepath)
         {
-            using (FileStream fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(filepath, FileMode.Open, FileAccess.Read, isoStore))
             {
                 using (StreamReader rdr = new StreamReader(fileStream))
                 {
@@ -132,7 +140,9 @@ namespace Scion.MainHard
         /// <param name="cs"></param>
         public static void CharacterSaver(string filepath, CharacterSet cs)
         {
-            using (FileStream fileStream = new FileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
+
+            using (IsolatedStorageFileStream fileStream = new IsolatedStorageFileStream(filepath, FileMode.OpenOrCreate, FileAccess.ReadWrite, isoStore))
             {
                 using (StreamWriter Wtr = new StreamWriter(fileStream))
                 {

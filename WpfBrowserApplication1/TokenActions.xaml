@@ -1,0 +1,33 @@
+﻿<Window x:Class="Scion.Wpf.TokenActions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Scion.Wpf"
+        mc:Ignorable="d"
+        Title="TokenActions" Height="300" Width="300">
+    <Canvas HorizontalAlignment="Left" Height="249" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
+        <Grid Height="125" Canvas.Left="82" Canvas.Top="62" Width="180">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Ticks1" Content="1 Tick (hold)" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="0" Height="20" Click="Ticks1_Click"/>
+            <Button x:Name="Ticks2" Content="2 Ticks " HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="0" Height="20" Click="Ticks2_Click"/>
+            <Button x:Name="Ticks3" Content="3 Ticks" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="01"  Height="20" Click="Ticks3_Click"/>
+            <Button x:Name="Ticks4" Content="4 Ticks " HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="01" Height="20" Click="Ticks4_Click"/>
+            <Button x:Name="Ticks5" Content="5 Ticks " HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="2"  Height="20" Click="Ticks5_Click"/>
+            <Button x:Name="Ticks6" Content="6 Ticks " HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.Row="2"  Height="20" Click="Ticks6_Click"/>
+            <Button x:Name="KillMe" Content="Dead" Grid.Column="1" Grid.Row="4" Click="KillMe_Click"/>
+        </Grid>
+        <Label x:Name="NameLabel" Content="Label" Canvas.Left="23" Canvas.Top="20" Width="92"/>
+    </Canvas>
+</Window>

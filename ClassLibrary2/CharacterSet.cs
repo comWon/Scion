@@ -57,8 +57,8 @@ namespace Scion.MainHard
         /// </summary>
         public void nextRound ()
         {
-            if  (ActiveChars.Count(x => x.ReturnPosition() == 0) != 0) { Exception PlayersToGo = null; throw PlayersToGo; }
-
+            if  (ActiveChars.Count(x => x.ReturnPosition() == 0 && !x.Dead) != 0) { Exception PlayersToGo = null; throw PlayersToGo; }
+                        
             foreach (CharData C in ActiveChars)
             {
                 C.NextAction();

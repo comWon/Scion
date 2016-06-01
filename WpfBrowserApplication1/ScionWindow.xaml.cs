@@ -20,6 +20,10 @@ namespace Scion.Wpf
     /// </summary>
     public partial class ScionWindow : Window
     {
+        public ScionLoader sL { get; set; }
+        public MonsterIn ML { get; set; }
+        public CharacterSet characterSet { get; set; }
+
         public ScionWindow()
         {
             InitializeComponent();
@@ -36,18 +40,20 @@ namespace Scion.Wpf
 
         private void MonsterButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("/ScionInit;component/MonsterLoad.xaml");
+            ML = new MonsterIn();
+            masterFrame.Content = ML;
         }
 
         private void ScionButton_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new System.Uri("/ScionInit;component/ScionLoader.xaml");
+             sL = new ScionLoader();
+            masterFrame.Content = sL;
         }
 
         private void Game_Click(object sender, RoutedEventArgs e)
         {
-            masterFrame.Source = new Uri("/ScoinInit;component/Combat.xaml");
 
+            CombatWindow combatWindow = new CombatWindow(characterSet);
         }
     }
 }

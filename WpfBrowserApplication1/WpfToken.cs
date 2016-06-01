@@ -11,10 +11,12 @@ using System.Reflection;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using Scion.MainHard;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Scion.Wpf
 {
-    class WpfToken
+    class WpfToken 
     {
         public Canvas Token { get; set; }
 
@@ -27,6 +29,7 @@ namespace Scion.Wpf
         public int CurrentX { get; set; }
         public int CurrentY { get; set; }
 
+        CharData CD { get; set; }
         //CAnnot exit construcotr without calling TokenConstructor; Therfore private
         private WpfToken()
         {
@@ -51,9 +54,9 @@ namespace Scion.Wpf
 
         public WpfToken(CharData Settings) : this()
         {
+            CD = Settings;
 
-
-            tokenText = Settings.ToonName;
+            tokenText = Settings.ToonName.Substring(0,3) + Settings.ToonName.Substring(Settings.ToonName.Length - 1);
 
             if (Settings.Image != null)
             {
@@ -77,15 +80,22 @@ namespace Scion.Wpf
 
         private void TokenPosition(int Step)
         {
-            // if Invalid Step, Shunt to end
-            if (Step < 0 || Step > 7) Step = 7;
+            if (CD.Rdy)
+            {
+                // if Invalid Step, Shunt to end
+                if (Step < 0 || Step > 7) Step = 7;
 
-            // Co-Ords holders
+                // Co-Ords holders
 
-            double a = (Math.PI / 8) + ((Math.PI / 4) * Step);
-            CurrentX = 150 + Convert.ToInt16(75 * Math.Cos(a));
-            CurrentY = 150 + Convert.ToInt16(75 * Math.Sin(a));
-
+                double a = (Math.PI / 8) + ((Math.PI / 4) * Step);
+                CurrentX = 150 + Convert.ToInt16(75 * Math.Cos(a));
+                CurrentY = 150 + Convert.ToInt16(75 * Math.Sin(a));
+            }
+            else
+            {
+                CurrentX = 450;
+                CurrentY = 100;
+            }
         }
 
         private void TokenConstructor()
@@ -111,6 +121,35 @@ namespace Scion.Wpf
             Token = new Canvas() { Height = 20, Width = 20 };
             Token.Children.Add(cir);
             Token.Children.Add(textBlk);
+            Token.MouseDown += new MouseButtonEventHandler(TokenClick);
         }
+        /// <summary>
+        /// Click in a token
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TokenClick(object sender, EventArgs e)
+        {
+            if (CD.Rdy) //has a position
+            {
+                using (TokenActions handler = new TokenActions(CD))
+                {
+                    handler.ShowDialog();
+
+                    CD = handler.getResult();
+
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        public void Kill()
+        {
+
+        }
+
     }
 }
