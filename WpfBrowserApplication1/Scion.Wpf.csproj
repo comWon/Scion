@@ -75,8 +75,8 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="CombatWindow.xaml.cs">
-      <DependentUpon>CombatWindow.xaml</DependentUpon>
+    <Compile Include="Combat.xaml.cs">
+      <DependentUpon>Combat.xaml</DependentUpon>
     </Compile>
     <Compile Include="MonsterLoad.xaml.cs">
       <DependentUpon>MonsterLoad.xaml</DependentUpon>
@@ -92,7 +92,7 @@
     <Compile Include="ScionWindow.xaml.cs">
       <DependentUpon>ScionWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="CombatWindow.xaml">
+    <Page Include="Combat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,10 +100,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Combat.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MonsterLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

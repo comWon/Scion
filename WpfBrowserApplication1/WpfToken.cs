@@ -28,8 +28,9 @@ namespace Scion.Wpf
         public string TokenImage { get; private set; }
         public int CurrentX { get; set; }
         public int CurrentY { get; set; }
+        public int position { get; set; }
+        public CharData charData { get; set; }
 
-        CharData CD { get; set; }
         //CAnnot exit construcotr without calling TokenConstructor; Therfore private
         private WpfToken()
         {
@@ -54,7 +55,7 @@ namespace Scion.Wpf
 
         public WpfToken(CharData Settings) : this()
         {
-            CD = Settings;
+            charData = Settings;
 
             tokenText = Settings.ToonName.Substring(0,3) + Settings.ToonName.Substring(Settings.ToonName.Length - 1);
 
@@ -80,7 +81,7 @@ namespace Scion.Wpf
 
         private void TokenPosition(int Step)
         {
-            if (CD.Rdy)
+            if (charData.Rdy)
             {
                 // if Invalid Step, Shunt to end
                 if (Step < 0 || Step > 7) Step = 7;
@@ -130,13 +131,13 @@ namespace Scion.Wpf
         /// <param name="e"></param>
         private void TokenClick(object sender, EventArgs e)
         {
-            if (CD.Rdy) //has a position
+            if (charData.Rdy) //has a position
             {
-                using (TokenActions handler = new TokenActions(CD))
+                using (TokenActions handler = new TokenActions(charData))
                 {
                     handler.ShowDialog();
 
-                    CD = handler.getResult();
+                    charData = handler.getResult();
 
                 }
             }
@@ -151,5 +152,20 @@ namespace Scion.Wpf
 
         }
 
+        public int Sector()
+        {
+            return charData.ReturnPosition();
+        }
+
+        public int Sector (int set, bool Override )
+        {
+            if (Override )
+            {
+                charData.speed = set;
+                while (charData.ReturnPosition() !=  )
+            }
+
+            return set;
+        }
     }
 }

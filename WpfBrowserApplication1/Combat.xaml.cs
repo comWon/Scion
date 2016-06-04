@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scion.MainHard;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,37 +11,36 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Scion.MainHard;
 
 namespace Scion.Wpf
 {
-    class Combat :Canvas
+    /// <summary>
+    /// Interaction logic for CombatWindow.xaml
+    /// </summary>
+    public partial class Combat: Canvas
     {
-        public Combat()
+        List<WpfToken> tokens { get; set; }
+        CharacterSet charSet { get; set; }
+        private Combat()
         {
-            Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            InitializeComponent();
         }
 
-        public Combat(CharacterSet CS):this()
+        public Combat(CharacterSet cs) :this() 
         {
-            Chars = CS;
-            tokens = new List<WpfToken>();
+            charSet = cs;
 
-            foreach ( CharData c in CS.Listing())
+            foreach (CharData c in cs.Listing())
             {
                 WpfToken token = new WpfToken(c);
-                Canvas.SetTop(token.Token, token.CurrentX);
-                Canvas.SetLeft(token.Token, token.CurrentY);
                 tokens.Add(token);
-
-
+                int a = tokens.Count(s => s.charData.ReturnPosition() == token.charData.ReturnPosition());
+                token.Sector = a;
+                TokenCanvas.Children.Add(token.Token);
+                Canvas.SetLeft(token.Token, token.CurrentY);
+                Canvas.SetTop(token.Token, token.CurrentX);
             }
         }
-
-        CharacterSet Chars { get; set; }
-
-        List<WpfToken> tokens { get; set; }
     }
 }
