@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Scion.MainHard
 {
-    public class CharacterSet
+    public class CharacterSet : INotifyPropertyChanged
     {
         List<CharData> ActiveChars;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void StartCombat()
         {
@@ -18,17 +21,27 @@ namespace Scion.MainHard
                 nullChack();
 
                 if (C.Rdy == false) { Exception NotYetReady = null; throw NotYetReady; }
-                if (C.Monster == true && C.Successes == -1 ) { C.MonsterInit(); }
-                
+                if (C.Monster == true && C.Successes == -1) { C.MonsterInit(); }
+
             }
 
-            int Target = ActiveChars.Aggregate((curMax, x) => (curMax == null || x.Successes > curMax.Successes ? x : curMax)).Successes;
-            
+            int Target = ActiveChars.Aggregate((curMax, x) => (curMax == null || x.Successes.Value > curMax.Successes ? x : curMax)).Successes.Value;
+
             foreach (CharData C in ActiveChars)
             {
                 C.trigger(Target);
-            }  
+            }
 
+        }
+
+        public int count ()
+        {
+            return ActiveChars.Count();
+        }
+
+        public int CurrentCount()
+        {
+            return ActiveChars.Where(x => x.Rdy == true).Count();
         }
 
         private void nullChack()
@@ -39,19 +52,30 @@ namespace Scion.MainHard
             }
         }
 
-        public IEnumerable<CharData> ActiveCharacters ()
+        public IEnumerable<CharData> ActiveCharacters()
         {
             nullChack();
 
             return ActiveChars.Where(x => x.ReturnPosition() == 0);
         }
 
-        public IEnumerable Listing()
+        /// <summary>
+        /// Returns Binding List of chars
+        /// </summary>
+        /// <returns></returns>
+        public BindingList<CharData> Listing()
         {
 
             nullChack();
 
-            return ActiveChars;
+            BindingList<CharData> dbgs = new BindingList<CharData>();
+            foreach (var cd in ActiveChars)
+            {
+                dbgs.Add(cd);
+            }
+
+            return dbgs;
+
         }
 
         public CharData Next()
@@ -61,11 +85,12 @@ namespace Scion.MainHard
 
             CharData Returns = ActiveChars.FirstOrDefault(x => x.ReturnPosition() == 0);
 
-            if (Returns==null)
+            if (Returns == null)
             {
                 this.nextRound();
                 return Next();
-            } else
+            }
+            else
             {
                 return Returns;
             }
@@ -73,14 +98,19 @@ namespace Scion.MainHard
         /// <summary>
         /// Check All actions have occured, then starts the next round of combat
         /// </summary>
-        public void nextRound ()
+        public void nextRound()
         {
-            if  (ActiveChars.Count(x => x.ReturnPosition() == 0 && !x.Dead) != 0) { Exception PlayersToGo = null; throw PlayersToGo; }
-                        
+            if (ActiveChars.Count(x => x.ReturnPosition() == 0 && !x.Dead) != 0) { Exception PlayersToGo = null; throw PlayersToGo; }
+
             foreach (CharData C in ActiveChars)
             {
                 C.NextAction();
             }
+        }
+
+        public void Kill(int rowIndex)
+        {
+            ActiveChars.RemoveAt(rowIndex);
         }
 
         /// <summary>
@@ -96,19 +126,19 @@ namespace Scion.MainHard
         /// </summary>
         /// <param name="M"> monster to add,</param>
         /// <param name="Number"> Count of Monsters to add</param>
-        public void AddMonsters (Monster M, int Number)
+        public void AddMonsters(Monster M, int Number)
         {
 
             nullChack();
 
-            if (M.Joinbattle ==0) { Exception MonsterNotSet=null;  throw MonsterNotSet; }
+            if (M.Joinbattle == 0) { Exception MonsterNotSet = null; throw MonsterNotSet; }
             for (int i = 0; i < Number; i++)
             {
                 CharData Mon = new CharData(M, M.Name + i.ToString());
                 ActiveChars.Add(Mon);
             }
 
-
+            this.NotifyPropertyChanged("Monsters");
         }
 
         public void AddCharacter(CharData c)
@@ -117,6 +147,26 @@ namespace Scion.MainHard
             nullChack();
 
             ActiveChars.Add(c);
+            this.NotifyPropertyChanged("CharData");
         }
+
+        public bool Ready()
+        {
+            foreach (CharData c in ActiveChars)
+            {
+                if (c.Rdy == false) { return false; }
+            }
+
+            return true;
+        }
+
+        private void NotifyPropertyChanged(string name)
+        {
+            if (PropertyChanged != null) 
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+
     }
+
 }

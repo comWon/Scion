@@ -22,6 +22,7 @@ namespace Scion.Wpf
     {
         List<WpfToken> tokens { get; set; }
         CharacterSet charSet { get; set; }
+
         private Combat()
         {
             InitializeComponent();
@@ -36,11 +37,13 @@ namespace Scion.Wpf
                 WpfToken token = new WpfToken(c);
                 tokens.Add(token);
                 int a = tokens.Count(s => s.charData.ReturnPosition() == token.charData.ReturnPosition());
-                token.Sector = a;
+                token.Sector( a,true);
                 TokenCanvas.Children.Add(token.Token);
                 Canvas.SetLeft(token.Token, token.CurrentY);
                 Canvas.SetTop(token.Token, token.CurrentX);
             }
         }
+
+
     }
 }

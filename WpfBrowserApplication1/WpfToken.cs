@@ -131,7 +131,7 @@ namespace Scion.Wpf
         /// <param name="e"></param>
         private void TokenClick(object sender, EventArgs e)
         {
-            if (charData.Rdy) //has a position
+            if (charData.ReturnPosition()==0) //has a position
             {
                 using (TokenActions handler = new TokenActions(charData))
                 {
@@ -139,6 +139,7 @@ namespace Scion.Wpf
 
                     charData = handler.getResult();
 
+                    TokenPosition (charData.ReturnPosition()); 
                 }
             }
             else
@@ -162,7 +163,10 @@ namespace Scion.Wpf
             if (Override )
             {
                 charData.speed = set;
-                while (charData.ReturnPosition() !=  )
+                while (charData.ReturnPosition() !=  set)
+                {
+                    charData.setPosition(set);
+                }
             }
 
             return set;

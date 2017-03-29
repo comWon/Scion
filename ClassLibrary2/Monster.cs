@@ -11,7 +11,7 @@ namespace Scion.MainHard
         public string Name { get; set; }
         public int EpicDex { get; set; }
         public int Joinbattle { get; set; }
-        public Random rand = new Random();
+         Random rand = new Random();
 
         public Monster() { }
         public Monster (string _Name, int _EpicDex, int _joinBattle ):this()
@@ -23,7 +23,13 @@ namespace Scion.MainHard
 
         public int rollit()
         {
-            int temp = EpicDex;
+            if ( Joinbattle == 0)
+            {
+                Exception ValuesnotSet = new Exception("No Join Battle Roll Was Set");
+                 throw ValuesnotSet ;
+            }
+            
+                   int temp = EpicDex;
 
             for (int i = 0; i == Joinbattle; i++)
             {
@@ -38,4 +44,5 @@ namespace Scion.MainHard
         }
 
     }
+
 }

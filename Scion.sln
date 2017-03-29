@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scion.MainHard", "ClassLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scion.Wpf", "WpfBrowserApplication1\Scion.Wpf.csproj", "{5771A53F-999C-461F-807F-03FAD559CCC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Tests\UnitTests\UnitTests.csproj", "{5B7AFA6F-F143-4B74-AB91-88AD4275BDA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scion.WindowsForm", "WindowsFormsApplication1\Scion.WindowsForm.csproj", "{E2334B9D-DCD9-4D6A-BA18-946F046ACD60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,14 @@ Global
 		{5771A53F-999C-461F-807F-03FAD559CCC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5771A53F-999C-461F-807F-03FAD559CCC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5771A53F-999C-461F-807F-03FAD559CCC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B7AFA6F-F143-4B74-AB91-88AD4275BDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7AFA6F-F143-4B74-AB91-88AD4275BDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7AFA6F-F143-4B74-AB91-88AD4275BDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7AFA6F-F143-4B74-AB91-88AD4275BDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2334B9D-DCD9-4D6A-BA18-946F046ACD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2334B9D-DCD9-4D6A-BA18-946F046ACD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2334B9D-DCD9-4D6A-BA18-946F046ACD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2334B9D-DCD9-4D6A-BA18-946F046ACD60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
